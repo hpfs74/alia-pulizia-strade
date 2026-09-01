@@ -9,8 +9,15 @@ const GADDI: CleaningRule = {
   raw: 'Ogni Martedi dispari del mese dalle 00.00 alle 06.00',
 };
 
+/** Every test below builds a known rule, so a null return is a test failure. */
+function build(args: Parameters<typeof buildCalendar>[0]): string {
+  const ics = buildCalendar(args);
+  if (ics === null) throw new Error('expected a calendar, got null');
+  return ics;
+}
+
 describe('buildCalendar', () => {
-  const ics = buildCalendar({
+  const ics = build({
     street: 'PIAZZA TADDEO GADDI',
     rule: GADDI,
     fromDate: '2026-09-01',
@@ -35,7 +42,7 @@ describe('buildCalendar', () => {
   });
 
   it('alarms the evening before an afternoon cleaning', () => {
-    const afternoon = buildCalendar({
+    const afternoon = build({
       street: 'VIA ANTONIO MEUCCI',
       rule: {
         weekday: 3,
@@ -51,7 +58,7 @@ describe('buildCalendar', () => {
 
   it('names the street in the summary and escapes commas', () => {
     expect(ics).toContain('SUMMARY:Pulizia strade — PIAZZA TADDEO GADDI');
-    const withComma = buildCalendar({
+    const withComma = build({
       street: 'VIA DEI SERRAGLI, DA SAURO A S. MONACA',
       rule: GADDI,
       fromDate: '2026-09-01',
@@ -60,14 +67,38 @@ describe('buildCalendar', () => {
     expect(withComma).toContain('VIA DEI SERRAGLI\\, DA SAURO A S. MONACA');
   });
 
-  it('produces no events for an unknown rule', () => {
+  it('returns null for an unknown rule rather than an empty calendar', () => {
+    // An empty-but-valid .ics imports cleanly and reads as "nothing
+    // scheduled" — the exact under-alert this project exists to prevent.
+    // null forces every caller to decide what to do about it.
     const unknown = buildCalendar({
       street: 'X',
       rule: { ...GADDI, selector: { kind: 'unknown' } },
       fromDate: '2026-09-01',
       count: 3,
     });
-    expect(unknown).not.toContain('BEGIN:VEVENT');
+    expect(unknown).toBeNull();
+  });
+
+  it('gives two segments of one street distinct UIDs on the same date', () => {
+    // UIDs of date + street alone collide across tratti, and calendar apps
+    // dedupe a repeated UID — one segment's cleaning would vanish on import.
+    const args = { street: 'VIA DEI SERRAGLI', rule: GADDI, fromDate: '2026-09-01', count: 1 };
+    const first = build({ ...args, tratto: 'DA SAURO A S. MONACA' });
+    const second = build({ ...args, tratto: 'DA S. MONACA A CARMINE' });
+
+    const uid = (ics: string) => /^UID:.*$/m.exec(ics)![0].trim();
+    expect(uid(first)).not.toBe(uid(second));
+    expect(uid(first).startsWith('UID:2026-09-15-')).toBe(true);
+    expect(uid(second).startsWith('UID:2026-09-15-')).toBe(true);
+  });
+
+  it('distinguishes civic numbers too, and keeps the plain UID when neither is given', () => {
+    const args = { street: 'VIA ROMA', rule: GADDI, fromDate: '2026-09-01', count: 1 };
+    const uid = (ics: string) => /^UID:.*$/m.exec(ics)![0].trim();
+
+    expect(uid(build(args))).toBe('UID:2026-09-15-via-roma@pulizia-strade');
+    expect(uid(build({ ...args, civico: '12' }))).not.toBe(uid(build(args)));
   });
 
   it('folds lines by UTF-8 octets, not JS string length', () => {
@@ -81,7 +112,7 @@ describe('buildCalendar', () => {
       window: { startMinutes: 390, endMinutes: 600 },
       raw,
     };
-    const ics = buildCalendar({ street: 'X', rule, fromDate: '2026-09-01', count: 1 });
+    const ics = build({ street: 'X', rule, fromDate: '2026-09-01', count: 1 });
     const encoder = new TextEncoder();
 
     for (const line of ics.split('\r\n')) {

@@ -51,10 +51,33 @@ function dtstamp(now: Date): string {
   return `${now.toISOString().replace(/[-:]/g, '').slice(0, 15)}Z`;
 }
 
+function slug(value: string): string {
+  return value.replace(/\W+/g, '-').toLowerCase();
+}
+
+/**
+ * A UID must be unique per event. Date plus street name is not: a street with
+ * several `tratti` is cleaned on the same night on each of them, and calendar
+ * apps silently dedupe a repeated UID — one segment's alarm would just
+ * disappear on import. Segment and civic number are appended when known, and
+ * omitted otherwise so a single-segment street keeps a stable UID across runs.
+ */
+function uid(date: string, args: { street: string; tratto?: string; civico?: string }): string {
+  const parts = [date, slug(args.street)];
+  if (args.tratto) parts.push(slug(args.tratto));
+  if (args.civico) parts.push(`civ-${slug(args.civico)}`);
+  return `${parts.join('-')}@pulizia-strade`;
+}
+
 /**
  * Events use floating local time (no TZID, no trailing Z) so a calendar app
  * in Florence renders them at the right wall-clock time without shipping a
  * VTIMEZONE block.
+ *
+ * Returns null when the rule's selector is `unknown`, mirroring `toRrule`. An
+ * unknown rule has no projected dates, and emitting a valid-but-empty calendar
+ * would let a user import it and read "nothing scheduled" off a street we
+ * simply failed to parse. null forces the caller to say so instead.
  */
 export function buildCalendar(args: {
   street: string;
@@ -62,7 +85,13 @@ export function buildCalendar(args: {
   fromDate: string;
   count: number;
   alarmHour?: number;
-}): string {
+  /** Street segment, when the street has more than one. Part of the UID. */
+  tratto?: string;
+  /** Civic number, when one was used for the lookup. Part of the UID. */
+  civico?: string;
+}): string | null {
+  if (args.rule.selector.kind === 'unknown') return null;
+
   const alarmHour = args.alarmHour ?? 21;
   const dates = projectOccurrences(args.rule, args.fromDate, args.count);
   const summary = escapeText(`Pulizia strade — ${args.street}`);
@@ -84,7 +113,7 @@ export function buildCalendar(args: {
   for (const date of dates) {
     lines.push(
       'BEGIN:VEVENT',
-      `UID:${date}-${args.street.replace(/\W+/g, '-').toLowerCase()}@pulizia-strade`,
+      `UID:${uid(date, args)}`,
       `DTSTAMP:${generatedAt}`,
       `DTSTART:${stamp(date, args.rule.window.startMinutes)}`,
       `DTEND:${stamp(date, args.rule.window.endMinutes)}`,

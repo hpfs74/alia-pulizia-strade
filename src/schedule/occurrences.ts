@@ -1,12 +1,12 @@
 import type { CleaningRule } from '../alia/types.ts';
 
 /** Parse YYYY-MM-DD as a UTC calendar date. UTC avoids DST shifting the day. */
-function toDate(iso: string): Date {
+export function parseIsoDate(iso: string): Date {
   const [year, month, day] = iso.split('-').map(Number);
   return new Date(Date.UTC(year!, month! - 1, day!));
 }
 
-function toIso(date: Date): string {
+export function toIsoDate(date: Date): string {
   return date.toISOString().slice(0, 10);
 }
 
@@ -16,7 +16,7 @@ function occurrenceInMonth(date: Date): number {
 }
 
 export function matchesRule(rule: CleaningRule, iso: string): boolean {
-  const date = toDate(iso);
+  const date = parseIsoDate(iso);
   if (date.getUTCDay() !== rule.weekday) return false;
 
   switch (rule.selector.kind) {
@@ -33,7 +33,15 @@ export function matchesRule(rule: CleaningRule, iso: string): boolean {
   }
 }
 
-/** The next `count` cleaning dates strictly after `fromDate`. */
+/**
+ * The next `count` cleaning dates strictly after `fromDate`.
+ *
+ * Returns `[]` for an unknown selector. That empty array means "the rule was
+ * not understood", NEVER "no cleaning is scheduled" — the street may well be
+ * cleaned tonight. Callers must surface it as a warning and must not render it
+ * as an all-clear or write it into a calendar; `buildCalendar` returns null
+ * and `toRrule` returns null for exactly this reason.
+ */
 export function projectOccurrences(
   rule: CleaningRule,
   fromDate: string,
@@ -42,13 +50,13 @@ export function projectOccurrences(
   if (rule.selector.kind === 'unknown') return [];
 
   const found: string[] = [];
-  const cursor = toDate(fromDate);
+  const cursor = parseIsoDate(fromDate);
   // Two years is far beyond any real ordinance and bounds the loop.
   const limit = 366 * 2;
 
   for (let step = 0; step < limit && found.length < count; step += 1) {
     cursor.setUTCDate(cursor.getUTCDate() + 1);
-    const iso = toIso(cursor);
+    const iso = toIsoDate(cursor);
     if (matchesRule(rule, iso)) found.push(iso);
   }
   return found;
