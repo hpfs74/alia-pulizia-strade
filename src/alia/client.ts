@@ -9,7 +9,11 @@ interface RawStreet {
 }
 
 export class AliaClient {
-  constructor(private readonly post: PostFn) {}
+  private readonly post: PostFn;
+
+  constructor(post: PostFn) {
+    this.post = post;
+  }
 
   async getStreets(comune: string): Promise<Street[]> {
     const raw = (await this.post('main/get_indirizzi', { comune })) as RawStreet[] | null;
