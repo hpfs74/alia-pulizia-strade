@@ -13,10 +13,19 @@ const NAMED_ENTITIES: Record<string, string> = {
   ugrave: 'ù',
   deg: '°',
   times: '×',
+  // Alia writes ordinals as "Il 4&ordm Martedi" — masculine/feminine ordinal
+  // indicators, and it omits the closing semicolon.
+  ordm: 'º',
+  ordf: 'ª',
 };
 
+/**
+ * The closing semicolon is optional because Alia omits it on `&ordm`. Greedy
+ * `[a-zA-Z]+` still stops at a `;`, so well-formed entities keep decoding, and
+ * an unrecognised name is returned verbatim rather than guessed at.
+ */
 function decodeEntities(input: string): string {
-  return input.replace(/&(#x?[0-9a-fA-F]+|[a-zA-Z]+);/g, (match, body: string) => {
+  return input.replace(/&(#x?[0-9a-fA-F]+|[a-zA-Z]+);?/g, (match, body: string) => {
     if (body.startsWith('#x') || body.startsWith('#X')) {
       return String.fromCodePoint(parseInt(body.slice(2), 16));
     }

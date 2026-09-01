@@ -23,7 +23,21 @@ describe('AliaClient', () => {
       nome: 'PIAZZA TADDEO GADDI',
       tipoStrada: 'EXQ',
     });
-    expect(result).toHaveLength(3);
+    expect(result).toHaveLength(4);
+  });
+
+  it('decodes HTML entities in street names', async () => {
+    // 87 of Firenze's 1,560 street names arrive as e.g. "DELL&#039;INDIPENDENZA".
+    // Alia's own page calls htmlDecode() on nome; the cross-check in the CLI
+    // compares these against already-decoded text, so they must match.
+    const post: PostFn = async () => streets;
+    const result = await new AliaClient(post).getStreets('FIRENZE');
+
+    expect(result[3]).toEqual({
+      idStrada: '13185',
+      nome: "PIAZZA DELL'INDIPENDENZA",
+      tipoStrada: 'EXQ',
+    });
   });
 
   it('returns an empty segment list when Alia sends null', async () => {

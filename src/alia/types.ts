@@ -21,11 +21,15 @@ export interface TimeWindow {
  * Which occurrences of `weekday` within a month are selected.
  * `oddDayOfMonth` means the DATE is odd (1st, 3rd, 15th...), NOT the
  * first/third occurrence. See the spec's "dispari trap" section.
+ *
+ * `nthOfMonth` always carries a list, because Alia writes both
+ * "Il 4º Martedi" and "Il 2º e il 4º Lunedì". A single ordinal is `ns: [n]`.
+ * `ns` is sorted ascending and free of duplicates.
  */
 export type Selector =
   | { kind: 'oddDayOfMonth' }
   | { kind: 'evenDayOfMonth' }
-  | { kind: 'nthOfMonth'; n: number }
+  | { kind: 'nthOfMonth'; ns: number[] }
   | { kind: 'everyWeek' }
   | { kind: 'unknown' };
 

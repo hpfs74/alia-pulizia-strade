@@ -1,3 +1,4 @@
+import { decodeAliaHtml } from './html.ts';
 import { parseLookup } from './lookup.ts';
 import type { LookupResult, Street } from './types.ts';
 import type { PostFn } from './transport.ts';
@@ -19,7 +20,10 @@ export class AliaClient {
     const raw = (await this.post('main/get_indirizzi', { comune })) as RawStreet[] | null;
     return (raw ?? []).map((entry) => ({
       idStrada: entry.id_strada,
-      nome: entry.nome,
+      // Alia serves names HTML-encoded ("PIAZZA DELL&#039;INDIPENDENZA") and its
+      // own page calls htmlDecode() before displaying them. Mirror that, so the
+      // catalogue compares equal to text that came back through decodeAliaHtml.
+      nome: decodeAliaHtml(entry.nome),
       tipoStrada: entry.tipo_strada,
     }));
   }
