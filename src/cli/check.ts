@@ -3,6 +3,7 @@ import { AliaClient } from '../alia/client.ts';
 import { createTransport } from '../alia/transport.ts';
 import { buildCalendar } from '../ics/calendar.ts';
 import { projectOccurrences } from '../schedule/occurrences.ts';
+import { selectCrossCheckDates } from '../schedule/sample.ts';
 import { crossCheck } from '../schedule/verify.ts';
 
 function flag(name: string): string | undefined {
@@ -57,6 +58,16 @@ if (segments.length > 1 && tratto === '') {
 
 console.log(`${street.nome} (${comune})`);
 
+if (result.status === 'unparsed') {
+  // NOT the same as 'none'. Alia described a cleaning we failed to read, so
+  // saying "nothing scheduled" here would be exactly the under-alert this
+  // tool exists to prevent.
+  console.error(`Could not read Alia's answer: ${result.reason}.`);
+  console.error('Treat every night as risky until this is checked by hand.');
+  console.error(`Alia said:\n${result.raw}`);
+  process.exit(2);
+}
+
 if (result.status !== 'scheduled') {
   console.log(`Status: ${result.status}. No cleaning currently scheduled.`);
   process.exit(0);
@@ -70,25 +81,47 @@ if (result.rule.selector.kind === 'unknown') {
   process.exit(2);
 }
 
+// Deliberately UTC, not Europe/Rome. Between 00:00 and 02:00 Rome time this is
+// still yesterday, so projection starts a day early and the run shows one extra
+// date. That errs towards more alerts, never fewer, which is the safe direction
+// here; converting to Rome time would risk dropping tonight's cleaning instead.
 const today = new Date().toISOString().slice(0, 10);
 const upcoming = projectOccurrences(result.rule, today, 6);
 console.log(`Projected: ${upcoming.join(', ')}`);
 
-const cityList = await client.getCityList(comune, result.nextDate);
-const check = crossCheck({
-  rule: result.rule,
-  street: street.nome,
-  date: result.nextDate,
-  cityList,
-});
+// Sample both directions against Alia's own per-date listing. Checking only
+// result.nextDate proves nothing: Alia named that date, so it is in the
+// listing by construction and the comparison reduces to re-running our own
+// matcher offline.
+const sample = selectCrossCheckDates(result.rule, today);
+const failures: string[] = [];
 
-if (check.agrees) {
-  console.log('Cross-check: OK — projection matches Alia\'s city listing.');
-} else {
-  console.error(
-    `Cross-check FAILED for ${result.nextDate}: predicted=${check.predicted} actual=${check.actual}`,
+console.log(`Cross-check: sampling ${sample.length} dates against Alia's city listing...`);
+
+for (const { date, predicted } of sample) {
+  const cityList = await client.getCityList(comune, date);
+  const check = crossCheck({ rule: result.rule, street: street.nome, date, cityList });
+  const verdict = check.agrees ? 'OK' : 'MISMATCH';
+  console.log(
+    `  ${date}  we say ${predicted ? 'CLEANING' : 'clear   '}  ` +
+      `Alia says ${check.actual ? 'CLEANING' : 'clear   '}  ${verdict}`,
   );
+  if (!check.agrees) failures.push(date);
 }
+
+if (failures.length > 0) {
+  console.error(
+    `\nCross-check FAILED on ${failures.length} of ${sample.length} dates: ${failures.join(', ')}.`,
+  );
+  console.error(
+    'Our reading of the rule disagrees with Alia\'s own listing, so the projected\n' +
+      'dates above cannot be trusted and no calendar was written. Check the street\n' +
+      'by hand at https://www2.aliaserviziambientali.it/puliziastrade before parking.',
+  );
+  process.exit(3);
+}
+
+console.log(`Cross-check: OK — all ${sample.length} sampled dates agree with Alia.`);
 
 if (icsPath) {
   const ics = buildCalendar({
@@ -96,7 +129,15 @@ if (icsPath) {
     rule: result.rule,
     fromDate: today,
     count: icsCount,
+    tratto: tratto || undefined,
+    civico: civico || undefined,
   });
+  if (ics === null) {
+    // Unreachable today (an unknown rule already exited above), but the type
+    // makes it explicit that an unwritable calendar is never a silent success.
+    console.error('Rule not understood; no calendar written.');
+    process.exit(2);
+  }
   writeFileSync(icsPath, ics);
   // Report the number of events the calendar actually contains, not a
   // hardcoded guess — buildCalendar's projection may fall short of
