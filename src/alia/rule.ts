@@ -31,12 +31,16 @@ const WEEKDAYS: Record<string, Weekday> = {
 const WEEKDAY_RE = new RegExp(`\\b(${Object.keys(WEEKDAYS).join('|')})\\b`, 'g');
 
 /**
- * An ordinal: a digit optionally followed by an ordinal indicator. Alia writes
- * `1&ordm` (undecoded), `1º` (decoded), and `1°`/`1o` have been seen elsewhere.
- * Undecoded forms are accepted so the parser is robust whether or not the
- * caller ran the text through `decodeAliaHtml` first.
+ * An ordinal: a digit followed by an ordinal indicator. Alia writes `1&ordm`
+ * (undecoded) and `1º` (decoded); `1°`/`1o`/`1ª` are accepted as plausible
+ * spellings of the same thing. Undecoded forms are accepted so the parser is
+ * robust whether or not the caller ran the text through `decodeAliaHtml`.
+ *
+ * The indicator is REQUIRED. Every one of the 131 corpus phrasings carries
+ * one, and treating a bare digit as an ordinal misreads incidental numbers —
+ * "Zona 3 - Ogni Lunedi" would narrow a weekly rule to one Monday a month.
  */
-const ORDINAL_RE = /(?<!\d)(\d+)(?:&ordm;?|&ordf;?|º|ª|°|[oa](?![a-z]))?(?!\d)/g;
+const ORDINAL_RE = /(?<!\d)(\d+)(?:&ordm;?|&ordf;?|º|ª|°|[oa](?![a-z]))(?!\d)/g;
 
 /** A month has at most five occurrences of any weekday. */
 const MAX_ORDINAL = 5;
@@ -56,7 +60,7 @@ function normalise(raw: string): string {
 
 interface WeekdayMatch {
   weekday: Weekday;
-  /** Index into the normalised string where the weekday name begins. */
+  /** Index into the normalised string where the LAST mention of it begins. */
   index: number;
 }
 
@@ -64,6 +68,11 @@ interface WeekdayMatch {
  * Returns the single weekday named in the sentence, or null when none is named
  * or when two different ones are — a two-weekday sentence is a grammar we have
  * never seen and must not be guessed at.
+ *
+ * The same weekday may be named more than once ("Il 1º Martedi e il 3º
+ * Martedi"), so `index` tracks the last mention: ordinals are collected from
+ * everything before it, and slicing at the first mention would silently drop
+ * every ordinal but the first.
  */
 function findWeekday(normalised: string): WeekdayMatch | null {
   WEEKDAY_RE.lastIndex = 0;
@@ -75,6 +84,8 @@ function findWeekday(normalised: string): WeekdayMatch | null {
       found = { weekday, index: match.index };
     } else if (found.weekday !== weekday) {
       return null;
+    } else {
+      found.index = match.index;
     }
   }
   return found;

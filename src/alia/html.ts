@@ -19,18 +19,26 @@ const NAMED_ENTITIES: Record<string, string> = {
   ordf: 'ª',
 };
 
+const MAX_CODE_POINT = 0x10ffff;
+
 /**
  * The closing semicolon is optional because Alia omits it on `&ordm`. Greedy
  * `[a-zA-Z]+` still stops at a `;`, so well-formed entities keep decoding, and
  * an unrecognised name is returned verbatim rather than guessed at.
+ *
+ * Decimal and hex have separate branches: sharing one `[0-9a-fA-F]+` class let
+ * an unterminated decimal entity run on into the following text, so
+ * "DELL&#039ANDREA" decoded as "DELL'NDREA" — the A was eaten as a hex digit.
  */
 function decodeEntities(input: string): string {
-  return input.replace(/&(#x?[0-9a-fA-F]+|[a-zA-Z]+);?/g, (match, body: string) => {
-    if (body.startsWith('#x') || body.startsWith('#X')) {
-      return String.fromCodePoint(parseInt(body.slice(2), 16));
-    }
+  return input.replace(/&(#[xX][0-9a-fA-F]+|#[0-9]+|[a-zA-Z]+);?/g, (match, body: string) => {
     if (body.startsWith('#')) {
-      return String.fromCodePoint(parseInt(body.slice(1), 10));
+      const isHex = body[1] === 'x' || body[1] === 'X';
+      const code = parseInt(isHex ? body.slice(2) : body.slice(1), isHex ? 16 : 10);
+      // fromCodePoint throws above U+10FFFF. Malformed input must not crash
+      // the lookup parser, so an out-of-range entity is left as written.
+      if (!Number.isInteger(code) || code < 0 || code > MAX_CODE_POINT) return match;
+      return String.fromCodePoint(code);
     }
     return NAMED_ENTITIES[body.toLowerCase()] ?? match;
   });

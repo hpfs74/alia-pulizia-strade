@@ -45,6 +45,33 @@ describe('parseRule', () => {
     });
   });
 
+  it('keeps every ordinal when the weekday noun is repeated', () => {
+    // "Il 1º Martedi e il 3º Martedi" is how Alia would spell the two-ordinal
+    // family with a repeated noun. Slicing at the first mention would drop the
+    // 3rd Tuesday and leave someone parked on a night they are not safe.
+    const rule = parseRule(
+      'Il 1º Martedi e il 3º Martedi del mese dalle 00.00 alle 06.00',
+      WINDOW,
+    );
+    expect(rule.weekday).toBe(2);
+    expect(rule.selector).toEqual({ kind: 'nthOfMonth', ns: [1, 3] });
+  });
+
+  it('ignores digits that carry no ordinal indicator', () => {
+    // A stray number before the weekday is not an ordinal. Reading it as one
+    // narrows a weekly rule to a single day a month.
+    const rule = parseRule('Zona 3 - Ogni Lunedi del mese dalle 00.00 alle 06.00', WINDOW);
+    expect(rule.weekday).toBe(1);
+    expect(rule.selector).toEqual({ kind: 'everyWeek' });
+  });
+
+  it('returns unknown when a bare number precedes an otherwise unqualified weekday', () => {
+    // No parity word, no ordinal indicator, no "ogni" — nothing to go on.
+    expect(
+      parseRule('Zona 3 - Lunedi del mese dalle 00.00 alle 06.00', WINDOW).selector,
+    ).toEqual({ kind: 'unknown' });
+  });
+
   it('returns unknown when two different weekdays are named', () => {
     const rule = parseRule('Il 1º Lunedi e il 2º Martedi del mese dalle 13.00 alle 19.00', WINDOW);
     expect(rule.selector).toEqual({ kind: 'unknown' });

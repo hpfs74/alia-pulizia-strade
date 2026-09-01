@@ -33,6 +33,27 @@ describe('decodeAliaHtml', () => {
     expect(decodeAliaHtml('<p>PIAZZA DELL&#039INDIPENDENZA</p>')).toBe(decoded);
   });
 
+  it('does not let a semicolon-less decimal entity swallow following A-F letters', () => {
+    // A decimal entity must be read with a decimal character class. Reading it
+    // with a hex class ate the "A" of ANDREA and all of "BCDEF" — and a test
+    // whose next letter is outside A-F passes either way, so assert on one
+    // that is not.
+    expect(decodeAliaHtml('<p>VIA A&#039BCDEF</p>')).toBe("VIA A'BCDEF");
+    expect(decodeAliaHtml('<p>PIAZZA DELL&#039ANDREA</p>')).toBe("PIAZZA DELL'ANDREA");
+    // The hex form still reads hex digits; without a semicolon it is genuinely
+    // ambiguous, so only the terminated form is relied on.
+    expect(decodeAliaHtml('<p>VIA A&#x27;BCDEF</p>')).toBe("VIA A'BCDEF");
+    expect(decodeAliaHtml('<p>VIA A&#X27;BCDEF</p>')).toBe("VIA A'BCDEF");
+  });
+
+  it('leaves an out-of-range numeric entity alone instead of throwing', () => {
+    // String.fromCodePoint raises RangeError above U+10FFFF; malformed input
+    // must not crash the lookup parser that calls this.
+    expect(decodeAliaHtml('<p>&#9999999;</p>')).toBe('&#9999999;');
+    expect(decodeAliaHtml('<p>&#x1FFFFFF;</p>')).toBe('&#x1FFFFFF;');
+    expect(decodeAliaHtml('<p>&#1114111;</p>')).toBe('\u{10FFFF}');
+  });
+
   it('leaves unknown entity names untouched', () => {
     expect(decodeAliaHtml('<p>Rossi &amp; Bianchi &notanentity R&amp;D AT&T</p>')).toBe(
       'Rossi & Bianchi &notanentity R&D AT&T',
