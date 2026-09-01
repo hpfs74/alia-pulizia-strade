@@ -1,10 +1,10 @@
 import { decodeAliaHtml } from './html.ts';
 import { parseRule } from './rule.ts';
-import type { LookupResult, TimeWindow } from './types.ts';
+import type { CleaningRule, LookupResult, TimeWindow } from './types.ts';
 
 const DATE_RE = /\b(\d{1,2})\/(\d{1,2})\/(\d{4})\b/;
 const WINDOW_RE = /Orario\s+(\d{1,2})[.:](\d{2})\s*-\s*(\d{1,2})[.:](\d{2})/i;
-const RULE_RE = /^(?:Ogni|Il|Lo|La)\s+.*\bdalle\b.*\balle\b.*$/i;
+const RULE_RE = /\bdalle\b.*\balle\b/i;
 
 export function parseTimeWindow(text: string): TimeWindow | null {
   const match = WINDOW_RE.exec(text);
@@ -28,19 +28,23 @@ export function parseLookup(payload: string): LookupResult {
   const window = parseTimeWindow(text);
   const ruleLine = lines.find((line) => RULE_RE.test(line));
 
-  if (!dateMatch || !window || !ruleLine) {
+  if (!dateMatch || !window) {
     return { status: 'none', street, raw: text };
   }
 
   const day = dateMatch[1]!.padStart(2, '0');
   const month = dateMatch[2]!.padStart(2, '0');
 
+  const rule: CleaningRule = ruleLine
+    ? parseRule(ruleLine, window)
+    : { weekday: 0, selector: { kind: 'unknown' }, window, raw: text };
+
   return {
     status: 'scheduled',
     street,
     nextDate: `${dateMatch[3]}-${month}-${day}`,
     window,
-    rule: parseRule(ruleLine, window),
+    rule,
     raw: text,
   };
 }

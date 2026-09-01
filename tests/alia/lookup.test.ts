@@ -10,6 +10,9 @@ const EXPIRED =
   "<h4>BORGO PINTI</h4><p>L'ordinanza per questo tratto di strada &egrave; scaduta</p>" +
   '<p>Momentaneamente non sono previste altre ordinanze</p>';
 
+const NONE =
+  '<h4>VIA ROMA</h4><p>Nessuna informazione disponibile per questa via</p>';
+
 describe('parseLookup', () => {
   it('extracts street, next date and window from a scheduled response', () => {
     const result = parseLookup(SCHEDULED);
@@ -31,5 +34,36 @@ describe('parseLookup', () => {
     const result = parseLookup(EXPIRED);
     expect(result.status).toBe('expired');
     expect(result.street).toBe('BORGO PINTI');
+  });
+
+  it('reports none when there is no date and no window', () => {
+    const result = parseLookup(NONE);
+    expect(result.status).toBe('none');
+    expect(result.street).toBe('VIA ROMA');
+  });
+
+  it('stays scheduled when the rule sentence uses an unrecognised article, keeping date and window', () => {
+    const payload = SCHEDULED.replace(
+      'Ogni Martedi dispari del mese dalle 00.00 alle 06.00',
+      'Le settimane dispari dalle 00.00 alle 06.00',
+    );
+    const result = parseLookup(payload);
+    expect(result.status).toBe('scheduled');
+    if (result.status !== 'scheduled') return;
+    expect(result.nextDate).toBe('2026-09-15');
+    expect(result.window).toEqual({ startMinutes: 0, endMinutes: 360 });
+    expect(result.rule.selector.kind).toBe('unknown');
+  });
+
+  it('stays scheduled with an unknown rule when no recurrence sentence is present', () => {
+    const payload =
+      '<h4>PIAZZA TADDEO GADDI</h4><p>La data di prossima pulizia strade &egrave;:</p>' +
+      '<p>Martedi 15/9/2026</p><p>Orario 00.00 - 06.00</p>';
+    const result = parseLookup(payload);
+    expect(result.status).toBe('scheduled');
+    if (result.status !== 'scheduled') return;
+    expect(result.nextDate).toBe('2026-09-15');
+    expect(result.window).toEqual({ startMinutes: 0, endMinutes: 360 });
+    expect(result.rule.selector.kind).toBe('unknown');
   });
 });
