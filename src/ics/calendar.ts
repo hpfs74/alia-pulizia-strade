@@ -27,6 +27,11 @@ function stamp(iso: string, minutes: number): string {
   return `${year}${month}${day}T${pad(Math.floor(minutes / 60))}${pad(minutes % 60)}00`;
 }
 
+/** UTC generation timestamp. RFC 5545 requires DTSTAMP on every VEVENT. */
+function dtstamp(now: Date): string {
+  return `${now.toISOString().replace(/[-:]/g, '').slice(0, 15)}Z`;
+}
+
 /**
  * Events use floating local time (no TZID, no trailing Z) so a calendar app
  * in Florence renders them at the right wall-clock time without shipping a
@@ -42,6 +47,7 @@ export function buildCalendar(args: {
   const alarmHour = args.alarmHour ?? 21;
   const dates = projectOccurrences(args.rule, args.fromDate, args.count);
   const summary = escapeText(`Pulizia strade — ${args.street}`);
+  const generatedAt = dtstamp(new Date());
 
   // Minutes from the alarm (previous evening) to the cleaning start.
   const leadMinutes = args.rule.window.startMinutes + (24 * 60 - alarmHour * 60);
@@ -60,6 +66,7 @@ export function buildCalendar(args: {
     lines.push(
       'BEGIN:VEVENT',
       `UID:${date}-${args.street.replace(/\W+/g, '-').toLowerCase()}@pulizia-strade`,
+      `DTSTAMP:${generatedAt}`,
       `DTSTART:${stamp(date, args.rule.window.startMinutes)}`,
       `DTEND:${stamp(date, args.rule.window.endMinutes)}`,
       `SUMMARY:${summary}`,
