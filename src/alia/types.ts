@@ -52,4 +52,15 @@ export type LookupResult =
       raw: string;
     }
   | { status: 'expired'; street: string; raw: string }
-  | { status: 'none'; street: string; raw: string };
+  /**
+   * Alia said nothing about a cleaning: no date, no window, no rule sentence.
+   * This is the only status that means "nothing scheduled".
+   */
+  | { status: 'none'; street: string; raw: string }
+  /**
+   * Alia described SOMETHING — a date, a window or a recurrence sentence — but
+   * not enough of it to read. Kept distinct from 'none' because the two
+   * deserve opposite words to a user: a parse failure means "we could not tell,
+   * assume the street is cleaned", not "no cleaning currently scheduled".
+   */
+  | { status: 'unparsed'; street: string; reason: string; raw: string };

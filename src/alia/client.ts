@@ -10,6 +10,21 @@ interface RawStreet {
   tipo_strada: string;
 }
 
+/**
+ * Both HTML-returning endpoints hand back a JSON string. When Alia is in
+ * maintenance or an argument is malformed it can hand back an object or null
+ * instead, and passing that on produced "payload.replace is not a function"
+ * from inside decodeAliaHtml, naming neither the endpoint nor the input.
+ */
+function requireHtmlString(payload: unknown, path: string): string {
+  if (typeof payload !== 'string') {
+    throw new Error(
+      `Alia ${path} returned ${payload === null ? 'null' : typeof payload}, expected an HTML string`,
+    );
+  }
+  return payload;
+}
+
 export class AliaClient {
   private readonly post: PostFn;
 
@@ -43,23 +58,23 @@ export class AliaClient {
     tratto?: string;
     civico?: string;
   }): Promise<LookupResult> {
-    const payload = (await this.post('pulizie/calcola_data', {
+    const payload = await this.post('pulizie/calcola_data', {
       id_strada: args.idStrada,
       tipo_strada: args.tipoStrada,
       comune: args.comune,
       trattostrada: args.tratto ?? '',
       civico: args.civico ?? '',
-    })) as string;
-    return parseLookup(payload);
+    });
+    return parseLookup(requireHtmlString(payload, 'pulizie/calcola_data'));
   }
 
   /** `date` is YYYY-MM-DD; Alia expects DD/MM/YYYY. */
   async getCityList(comune: string, date: string): Promise<string[]> {
     const [year, month, day] = date.split('-');
-    const payload = (await this.post('pulizie/calcola_data_all', {
+    const payload = await this.post('pulizie/calcola_data_all', {
       datatratti: `${day}/${month}/${year}`,
       comune,
-    })) as string;
-    return parseCityList(payload);
+    });
+    return parseCityList(requireHtmlString(payload, 'pulizie/calcola_data_all'));
   }
 }

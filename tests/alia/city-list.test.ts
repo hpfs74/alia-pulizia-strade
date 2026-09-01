@@ -14,4 +14,15 @@ describe('parseCityList', () => {
   it('ignores the header lines', () => {
     expect(parseCityList(PAYLOAD)).not.toContain('In data: 13/10/2026');
   });
+
+  it('still finds streets if Alia drops the colon after Orario', () => {
+    // The sibling endpoint already writes "Orario 00.00". If this one ever
+    // matched it, a colon-only pattern would return an empty listing, and an
+    // empty listing makes every predicted cleaning look like a mismatch —
+    // or, worse for a predicted-clear date, a false confirmation.
+    expect(parseCityList(PAYLOAD.replace(/Orario:/g, 'Orario'))).toEqual([
+      'PIAZZA TADDEO GADDI',
+      'VIA DEI SERRAGLI',
+    ]);
+  });
 });

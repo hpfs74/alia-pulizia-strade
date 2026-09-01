@@ -42,6 +42,34 @@ describe('parseLookup', () => {
     expect(result.street).toBe('VIA ROMA');
   });
 
+  it('reports unparsed, not none, when a date is present but the window is not readable', () => {
+    // 'none' is rendered to the user as "no cleaning currently scheduled".
+    // A payload that plainly describes a cleaning we merely failed to read
+    // must never wear those words.
+    const payload = SCHEDULED.replace('Orario 00.00 - 06.00', 'Orario dalla sera al mattino');
+    const result = parseLookup(payload);
+    expect(result.status).toBe('unparsed');
+  });
+
+  it('reports unparsed when a rule sentence is present but no date is', () => {
+    const payload =
+      '<h4>PIAZZA TADDEO GADDI</h4><p>Orario 00.00 - 06.00</p>' +
+      '<p>Ogni Martedi dispari del mese dalle 00.00 alle 06.00</p>';
+    expect(parseLookup(payload).status).toBe('unparsed');
+  });
+
+  it('reads the time window whether or not Alia writes a colon after Orario', () => {
+    // calcola_data writes "Orario 00.00" and calcola_data_all writes
+    // "Orario: 00.00". Accepting both means a change on either endpoint
+    // cannot turn every street into a silent 'none'.
+    const withColon = parseLookup(SCHEDULED.replace('Orario 00.00', 'Orario: 00.00'));
+    expect(withColon.status).toBe('scheduled');
+    expect(withColon.status === 'scheduled' && withColon.window).toEqual({
+      startMinutes: 0,
+      endMinutes: 360,
+    });
+  });
+
   it('stays scheduled when the rule sentence uses an unrecognised article, keeping date and window', () => {
     const payload = SCHEDULED.replace(
       'Ogni Martedi dispari del mese dalle 00.00 alle 06.00',
