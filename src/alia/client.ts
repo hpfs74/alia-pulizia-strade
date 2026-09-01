@@ -1,4 +1,5 @@
 import { decodeAliaHtml } from './html.ts';
+import { parseCityList } from './city-list.ts';
 import { parseLookup } from './lookup.ts';
 import type { LookupResult, Street } from './types.ts';
 import type { PostFn } from './transport.ts';
@@ -50,5 +51,15 @@ export class AliaClient {
       civico: args.civico ?? '',
     })) as string;
     return parseLookup(payload);
+  }
+
+  /** `date` is YYYY-MM-DD; Alia expects DD/MM/YYYY. */
+  async getCityList(comune: string, date: string): Promise<string[]> {
+    const [year, month, day] = date.split('-');
+    const payload = (await this.post('pulizie/calcola_data_all', {
+      datatratti: `${day}/${month}/${year}`,
+      comune,
+    })) as string;
+    return parseCityList(payload);
   }
 }
