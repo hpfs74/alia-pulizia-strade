@@ -1,0 +1,1126 @@
+[
+  {
+    "raw": "Il 4&ordm Martedi del mese dalle 00.00 alle 06.00",
+    "count": 33,
+    "examples": [
+      "VIA FRANCESCO NULLO",
+      "VIA GIOVANNI PASCOLI",
+      "VIALE DON GIOVANNI MINZONI"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Mercoledi del mese dalle 00.00 alle 06.00",
+    "count": 33,
+    "examples": [
+      "VIA COPPO DI MARCOVALDO",
+      "VIA DEL CRONACA",
+      "VIA LUDOVICO CIGOLI"
+    ]
+  },
+  {
+    "raw": "Ogni Giovedi dispari del mese dalle 00.00 alle 06.00",
+    "count": 32,
+    "examples": [
+      "LUNGARNO SERRISTORI",
+      "VIA TOSCANELLA",
+      "PIAZZA DI SANTA FELICITA"
+    ]
+  },
+  {
+    "raw": "La 4&ordm Domenica del mese dalle 00.00 alle 06.00",
+    "count": 31,
+    "examples": [
+      "VIA AUGUSTO NOVELLI",
+      "VIA SCIPIONE AMMIRATO",
+      "VIA CESARE BALBO"
+    ]
+  },
+  {
+    "raw": "La 1&ordm Domenica del mese dalle 00.00 alle 06.00",
+    "count": 28,
+    "examples": [
+      "LARGO MICHELE LIVERANI",
+      "VIA DELLO STECCUTO",
+      "LARGO GIOVANNI ALESSANDRO BRAMBILLA"
+    ]
+  },
+  {
+    "raw": "Il 4&ordm Venerdi del mese dalle 00.00 alle 06.00",
+    "count": 28,
+    "examples": [
+      "PIAZZA SANTI GERVASIO E PROTASIO",
+      "VIA PIAGENTINA",
+      "VIA DELLA RONDINELLA"
+    ]
+  },
+  {
+    "raw": "Il 3&ordm Sabato del mese dalle 13.00 alle 18.00",
+    "count": 28,
+    "examples": [
+      "VIA MARCO DA GAGLIANO",
+      "VIA PADRE GIUSEPPE BOFFITO",
+      "VIA FRATELLI STUPARICH"
+    ]
+  },
+  {
+    "raw": "Il 4&ordm Giovedi del mese dalle 00.00 alle 06.00",
+    "count": 26,
+    "examples": [
+      "VIA DEGLI ARTISTI",
+      "VIA FERDINANDO ARRIVABENE",
+      "VIA ANDREA DEL CASTAGNO"
+    ]
+  },
+  {
+    "raw": "Il 4&ordm Sabato del mese dalle 00.00 alle 06.00",
+    "count": 26,
+    "examples": [
+      "VIA ERMETE ZACCONI",
+      "VIA ADELAIDE RISTORI",
+      "VIA FONTEBUONI"
+    ]
+  },
+  {
+    "raw": "Il 4&ordm Mercoledi del mese dalle 00.00 alle 06.00",
+    "count": 25,
+    "examples": [
+      "VIA DEL PRATELLINO",
+      "VIA DEL CAMPOFIORE",
+      "VIA ROSOLINO PILO"
+    ]
+  },
+  {
+    "raw": "Ogni Martedi pari del mese dalle 00.00 alle 06.00",
+    "count": 25,
+    "examples": [
+      "VIA FERDINANDO PAOLIERI",
+      "PIAZZA LORENZO GHIBERTI",
+      "VIA SANTA VERDIANA"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Venerdi del mese dalle 00.00 alle 06.00",
+    "count": 23,
+    "examples": [
+      "VIA LUIGI CALDIERI",
+      "LARGO MARTIRI DELLE FOIBE",
+      "VIA FRANCESCO CRISPI"
+    ]
+  },
+  {
+    "raw": "Ogni Mercoledi dispari del mese dalle 00.00 alle 06.00",
+    "count": 23,
+    "examples": [
+      "LUNGARNO DELLA ZECCA VECCHIA",
+      "LARGO PIERO BARGELLINI",
+      "LUNGARNO DELLE GRAZIE"
+    ]
+  },
+  {
+    "raw": "Il 3&ordm Martedi del mese dalle 00.00 alle 06.00",
+    "count": 21,
+    "examples": [
+      "PIAZZA GIAMPIETRO VIEUSSEUX",
+      "VIA FRANCESCO MARUCELLI",
+      "VIA CESARE LOMBROSO"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Sabato del mese dalle 00.00 alle 06.00",
+    "count": 20,
+    "examples": [
+      "VIA BENEDETTO DEI",
+      "VIA DEI CABOTO",
+      "VIA ALESSANDRO ALLORI"
+    ]
+  },
+  {
+    "raw": "Ogni Sabato pari del mese dalle 00.00 alle 06.00",
+    "count": 19,
+    "examples": [
+      "VIA CURTATONE",
+      "VIA MELEGNANO",
+      "VIA DI SANTA LUCIA"
+    ]
+  },
+  {
+    "raw": "Ogni Venerdi dispari del mese dalle 00.00 alle 06.00",
+    "count": 19,
+    "examples": [
+      "VIA DEL PRATELLO",
+      "PIAZZA DI SANTA CATERINA D&#039;ALESSANDRIA",
+      "VIA SANTA CATERINA D&#039;ALESSANDRIA"
+    ]
+  },
+  {
+    "raw": "Il 3&ordm Giovedi del mese dalle 00.00 alle 06.00",
+    "count": 18,
+    "examples": [
+      "PIAZZA LUDOVICO ANTONIO MURATORI",
+      "VIA SCIPIO SIGHELE",
+      "VIA CESARE GUASTI"
+    ]
+  },
+  {
+    "raw": "La 3&ordm Domenica del mese dalle 00.00 alle 06.00",
+    "count": 18,
+    "examples": [
+      "VIA DELLA TORRE DEGLI AGLI",
+      "VIA VALDINIEVOLE",
+      "VIA ORAZIO VECCHI"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Sabato del mese dalle 00.00 alle 06.00",
+    "count": 18,
+    "examples": [
+      "VIA FINLANDIA",
+      "VIA UNIONE SOVIETICA",
+      "PIAZZA DI BADIA A RIPOLI"
+    ]
+  },
+  {
+    "raw": "Il 3&ordm Mercoledi del mese dalle 00.00 alle 06.00",
+    "count": 17,
+    "examples": [
+      "VIA SANTO STEFANO IN PANE",
+      "VIA DELLA VILLA LORENZI",
+      "VIA CELSO"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Giovedi del mese dalle 00.00 alle 06.00",
+    "count": 17,
+    "examples": [
+      "VIA SANT&#039;ANGELO",
+      "VIA NICOLA PISANO",
+      "VIA ANDREA DA PONTEDERA"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Martedi del mese dalle 00.00 alle 06.00",
+    "count": 17,
+    "examples": [
+      "PIAZZA GAVINANA",
+      "PIAZZA GIUSEPPE POGGI",
+      "LUNGARNO BENVENUTO CELLINI"
+    ]
+  },
+  {
+    "raw": "Ogni Sabato dispari del mese dalle 00.00 alle 06.00",
+    "count": 17,
+    "examples": [
+      "VIA BRONZINO",
+      "LUNGARNO DEL PIGNONE",
+      "VIA DEL PIGNONE"
+    ]
+  },
+  {
+    "raw": "Ogni Domenica pari del mese dalle 00.00 alle 06.00",
+    "count": 17,
+    "examples": [
+      "VIALE LUDOVICO ARIOSTO",
+      "VIA LORENZO BARTOLINI",
+      "VIA DEL DRAGO D&#039;ORO"
+    ]
+  },
+  {
+    "raw": "Ogni Mercoledi pari del mese dalle 00.00 alle 06.00",
+    "count": 17,
+    "examples": [
+      "VIA MAGGIO",
+      "VIA DEI GEPPI",
+      "PIAZZA DEL CARMINE"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Venerdi del mese dalle 13.00 alle 18.00",
+    "count": 16,
+    "examples": [
+      "VIA SENESE",
+      "VIA UGO MOSCHI",
+      "VIA BRUNO CICOGNANI"
+    ]
+  },
+  {
+    "raw": "Ogni Giovedi pari del mese dalle 00.00 alle 06.00",
+    "count": 16,
+    "examples": [
+      "VIA SAN GALLO",
+      "VIA SANTA REPARATA",
+      "VIA ALESSANDRO MANZONI"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Giovedi del mese dalle 00.00 alle 06.00",
+    "count": 15,
+    "examples": [
+      "VIA MARIO PAGANO",
+      "VIA GUGLIELMO PEPE",
+      "VIA VINCENZIO BORGHINI"
+    ]
+  },
+  {
+    "raw": "La 2&ordm Domenica del mese dalle 00.00 alle 06.00",
+    "count": 15,
+    "examples": [
+      "VIA CARLO D&#039;ANGIO",
+      "VIA KIEV",
+      "VIA DELLE NAZIONI UNITE"
+    ]
+  },
+  {
+    "raw": "Il 4&ordm Venerdi del mese dalle 13.00 alle 18.00",
+    "count": 15,
+    "examples": [
+      "VIA DEI MELOGRANI",
+      "VIA CARLO BURCI",
+      "VIA DELLE ORTENSIE"
+    ]
+  },
+  {
+    "raw": "Il 3&ordm Mercoledi del mese dalle 13.00 alle 18.00",
+    "count": 15,
+    "examples": [
+      "VIA RUGGERO PANERAI",
+      "VIA VITTORIO CORCOS",
+      "VIA PLINIO NOMELLINI"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Mercoledi del mese dalle 00.00 alle 06.00",
+    "count": 14,
+    "examples": [
+      "VIA CARDINAL LATINO",
+      "VIA LAPO DA CASTIGLIONCHIO",
+      "VIA UGUCCIONE DELLA FAGGIOLA"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm e il 4&ordm Lunedi del mese dalle 06.00 alle 09.30",
+    "count": 14,
+    "examples": [
+      "VIA LIBERALE DA VERONA",
+      "VIA LIBERO ANDREOTTI",
+      "VIA NICCOLO CANNICCI"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Martedi del mese dalle 00.00 alle 06.00",
+    "count": 13,
+    "examples": [
+      "VIA BUFFALMACCO",
+      "VIA ELEONORA FONSECA PIMENTEL",
+      "VIA GUIDO GUINIZZELLI"
+    ]
+  },
+  {
+    "raw": "Il 3&ordm Sabato del mese dalle 06.00 alle 10.30",
+    "count": 13,
+    "examples": [
+      "VIA MASSA",
+      "PIAZZETTA SANSEPOLCRO",
+      "VIA CHIUSI"
+    ]
+  },
+  {
+    "raw": "Il 3&ordm Venerdi del mese dalle 13.00 alle 18.00",
+    "count": 13,
+    "examples": [
+      "VIA DELLE ACACIE",
+      "VIA PAOLO SCHIAVO",
+      "VIALETTO DEI CORBEZZOLI"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Mercoledi del mese dalle 13.00 alle 18.00",
+    "count": 13,
+    "examples": [
+      "VIA SAN MICHELE DELLE CAMPORA",
+      "VIA FRA&#039; BERNARDO DA QUINTAVALLE",
+      "VIA SANTA CHIARA"
+    ]
+  },
+  {
+    "raw": "Ogni Martedi dispari del mese dalle 00.00 alle 06.00",
+    "count": 13,
+    "examples": [
+      "VIA GIOVANNI ANTONIO SOGLIANI",
+      "VIA DELLA FONDERIA",
+      "PIAZZA PIER VETTORI"
+    ]
+  },
+  {
+    "raw": "Ogni Domenica dispari del mese dalle 00.00 alle 06.00",
+    "count": 13,
+    "examples": [
+      "IL PRATO",
+      "CORSO ITALIA",
+      "VIA SOLFERINO"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm e il 4&ordm Giovedi del mese dalle 07.30 alle 11.30",
+    "count": 13,
+    "examples": [
+      "VIA GIOVANNI GIOLITTI",
+      "VIA IVANOE BONOMI",
+      "VIA VITTORIO EMANUELE ORLANDO"
+    ]
+  },
+  {
+    "raw": "Il 4&ordm Lunedi del mese dalle 13.30 alle 19.00",
+    "count": 12,
+    "examples": [
+      "VIA VAL DI SIEVE",
+      "VIA ARDUINO MICCINESI",
+      "VIA RUGGERO LEONCAVALLO"
+    ]
+  },
+  {
+    "raw": "Il 3&ordm Sabato del mese dalle 00.00 alle 06.00",
+    "count": 12,
+    "examples": [
+      "VIA NICCOLO PAGANINI",
+      "VIA DELLA VILLA DEMIDOFF",
+      "VIALE DELLA TOSCANA"
+    ]
+  },
+  {
+    "raw": "Il 3&ordm Venerdi del mese dalle 00.00 alle 06.00",
+    "count": 12,
+    "examples": [
+      "VIA GIOVANNI DA EMPOLI",
+      "VIA GIOVAN FILIPPO MARITI",
+      "VIA DEL MERCATO DEL BESTIAME"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm e il 3&ordm e il 5&ordm Venerdi del mese dalle 06.30 alle 10.00",
+    "count": 11,
+    "examples": [
+      "VIA DEI VESPUCCI",
+      "VIA DI PERETOLA",
+      "VIA PRIMO SETTEMBRE"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Venerdi del mese dalle 00.00 alle 06.00",
+    "count": 11,
+    "examples": [
+      "PIAZZA DELLE CURE",
+      "VIA DINO COMPAGNI",
+      "VIA GUIDO CAVALCANTI"
+    ]
+  },
+  {
+    "raw": "Il 3&ordm Venerdi del mese dalle 09.30 alle 12.00",
+    "count": 11,
+    "examples": [
+      "VIA GIOVANNI DELL&#039;OPERA",
+      "VIA GIOVANNI MARIA BUTTERI",
+      "VIA DEL CARAVAGGIO"
+    ]
+  },
+  {
+    "raw": "Ogni Venerdi pari del mese dalle 00.00 alle 06.00",
+    "count": 11,
+    "examples": [
+      "PIAZZA DELLA CALZA",
+      "VIA DI SERUMIDO",
+      "VIA DELLE CALDAIE"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Venerdi del mese dalle 09.00 alle 12.00",
+    "count": 10,
+    "examples": [
+      "VIA SICILIA",
+      "VIA MOLISE",
+      "VIA SARDEGNA"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Giovedi del mese dalle 13.00 alle 18.00",
+    "count": 10,
+    "examples": [
+      "VIA DI MASSAPAGANI",
+      "PIAZZA DI VAL D&#039;EMA",
+      "VIA RODOLFO TORTOLI"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Martedi del mese dalle 06.00 alle 10.00",
+    "count": 10,
+    "examples": [
+      "VIA AGOSTINO CIARPAGLINI",
+      "VIA GIANFILIPPO BRACCINI",
+      "VIA ENRICO BARONI"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm e il 3&ordm Giovedi del mese dalle 06.00 alle 09.30",
+    "count": 10,
+    "examples": [
+      "VIA GIOVANNI PAPINI",
+      "VIA LUIGI PIRANDELLO",
+      "VIALE GIOVANNI VERGA"
+    ]
+  },
+  {
+    "raw": "Il 3&ordm Lunedi del mese dalle 13.00 alle 18.00",
+    "count": 10,
+    "examples": [
+      "VIA MARIOTTO DI NARDO",
+      "VIA GIULIANO BUGIARDINI",
+      "VIA DEL PONTE A GREVE"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Mercoledi del mese dalle 13.00 alle 18.00",
+    "count": 9,
+    "examples": [
+      "VIA GIOVANNI PRATI",
+      "VIA PIETRO METASTASIO",
+      "VIALE CARDINAL LEOPOLDO"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm e il 3&ordm Giovedi del mese dalle 08.30 alle 11.30",
+    "count": 8,
+    "examples": [
+      "PIAZZA BENEDETTO DA ROVEZZANO",
+      "VIA EMILIO VISCONTI VENOSTA",
+      "VIA DELLA NAVE A ROVEZZANO"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm e il 4&ordm Giovedi del mese dalle 13.00 alle 18.00",
+    "count": 8,
+    "examples": [
+      "VIA GAETANO PILATI",
+      "VIUZZO DELLE CANNE",
+      "VIA ATTILIO VALLECCHI"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm e il 4&ordm Sabato del mese dalle 06.00 alle 09.30",
+    "count": 8,
+    "examples": [
+      "VIA CORTONA",
+      "VIA CECCO BRAVO",
+      "PIAZZA CARLO DOLCI"
+    ]
+  },
+  {
+    "raw": "Il 4&ordm Lunedi del mese dalle 13.00 alle 19.00",
+    "count": 8,
+    "examples": [
+      "VIA DEL CONFINE",
+      "VIA ETTORE PETROLINI",
+      "VIA DEI NICCOLI"
+    ]
+  },
+  {
+    "raw": "Il 4&ordm Mercoledi del mese dalle 13.00 alle 18.30",
+    "count": 7,
+    "examples": [
+      "VIA TRIESTE",
+      "VIA TRENTO",
+      "VIA GUGLIELMO MASSAIA"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Lunedi del mese dalle 13.00 alle 18.00",
+    "count": 7,
+    "examples": [
+      "VIA LORENZO BELLINI",
+      "VIA LUIGI PULCI",
+      "VIA CANTAGALLI"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Giovedi del mese dalle 13.00 alle 18.00",
+    "count": 7,
+    "examples": [
+      "VIA SAN DAMIANO",
+      "VIA DEL GELSOMINO",
+      "VIA FERDINANDO CIOLINI"
+    ]
+  },
+  {
+    "raw": "Il 4&ordm Martedi del mese dalle 06.00 alle 12.00",
+    "count": 7,
+    "examples": [
+      "VIA ZANOBI DA STRADA",
+      "PIAZZA FRANCIA",
+      "VIA CECOSLOVACCHIA"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Mercoledi del mese dalle 06.00 alle 09.30",
+    "count": 6,
+    "examples": [
+      "VIA DEL FOSSETTO",
+      "VIA DELLE SCUOLE",
+      "VIA DELL&#039;ARGIN SECCO"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Sabato del mese dalle 13.00 alle 19.00",
+    "count": 6,
+    "examples": [
+      "VIA ARTURO FERRARIN",
+      "VIA MARIO DE BERNARDI",
+      "VIA LAURO ADOLFO DE BOSIS"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Martedi del mese dalle 08.30 alle 11.30",
+    "count": 6,
+    "examples": [
+      "VIA CAMPANIA",
+      "VIA CALABRIA",
+      "VIA FRIULI"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Lunedi del mese dalle 06.00 alle 09.30",
+    "count": 6,
+    "examples": [
+      "VIA LORENZO VIANI",
+      "VIA ANTONIO CISERI",
+      "VIA TELEMACO SIGNORINI"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Lunedi del mese dalle 13.00 alle 19.00",
+    "count": 6,
+    "examples": [
+      "VIA SPAGNA",
+      "VIA ODOARDO BECCARI",
+      "VIA GRECIA"
+    ]
+  },
+  {
+    "raw": "Il 3&ordm Lunedi del mese dalle 13.00 alle 19.00",
+    "count": 6,
+    "examples": [
+      "VIA FILIPPO PARLATORE",
+      "VIA ISONZO",
+      "VIA BRENTA"
+    ]
+  },
+  {
+    "raw": "Il 3&ordm Mercoledi del mese dalle 13.00 alle 18.30",
+    "count": 6,
+    "examples": [
+      "VIA VITTORIA DELLA ROVERE",
+      "VIA ELEONORA RAMIREZ DE MONTALVO",
+      "VIA GASPARE ASELLI"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Lunedi del mese dalle 07.00 alle 13.00",
+    "count": 6,
+    "examples": [
+      "VIA DON LORENZO MILANI",
+      "VIA DON MARTINI",
+      "VIA DEL PONTE DEL PECORA"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Mercoledi del mese dalle 13.00 alle 19.00",
+    "count": 5,
+    "examples": [
+      "VIA GIOVANNI ALDINI",
+      "VIA ANTONIO MEUCCI",
+      "VIA TIMOTEO BERTELLI"
+    ]
+  },
+  {
+    "raw": "Il 3&ordm Martedi del mese dalle 07.00 alle 12.00",
+    "count": 5,
+    "examples": [
+      "VIA MATTEO CIVITALI",
+      "VIA GIUSTO D&#039;ANDREA",
+      "VIA ROSATI"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Martedi del mese dalle 06.00 alle 09.30",
+    "count": 5,
+    "examples": [
+      "VIA DI CAMMORI",
+      "VIA DEL LUCCIO",
+      "VIA DELLA SAGGINA"
+    ]
+  },
+  {
+    "raw": "Il 3&ordm Lunedi del mese dalle 13.30 alle 17.30",
+    "count": 5,
+    "examples": [
+      "VIA SUOR PLAUTILLA",
+      "VIA GUALDRADA",
+      "VIA GUILLA"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Venerdi del mese dalle 06.00 alle 12.00",
+    "count": 5,
+    "examples": [
+      "VIA DEI BASTIONI",
+      "COSTA SCARPUCCIA",
+      "VIA DEL CANNETO"
+    ]
+  },
+  {
+    "raw": "Il 3&ordm Venerdi del mese dalle 13.00 alle 19.00",
+    "count": 4,
+    "examples": [
+      "PIAZZA NICCOLO TOMMASEO",
+      "VIA BERNARDO BUONTALENTI",
+      "PIAZZA DESIDERIO"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Giovedi del mese dalle 07.30 alle 11.30",
+    "count": 4,
+    "examples": [
+      "VIA STENTERELLO",
+      "VIA DI FAGNA",
+      "VIA GIROLAMO TARTAGLIONE"
+    ]
+  },
+  {
+    "raw": "Il 4&ordm Sabato del mese dalle 06.00 alle 12.00",
+    "count": 4,
+    "examples": [
+      "VIA AUGUSTO BARAZZUOLI",
+      "VIALETTO AMERIGO GOMEZ",
+      "LARGO ALCIDE DE GASPERI"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Venerdi del mese dalle 13.00 alle 18.00",
+    "count": 4,
+    "examples": [
+      "VIA DELLA MADONNA DELLA PACE",
+      "VIA DEL BALUARDO",
+      "VIA DEL MASCHERINO"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Venerdi del mese dalle 13.00 alle 19.00",
+    "count": 4,
+    "examples": [
+      "VIA DEL GUARLONE",
+      "VIA DOMENICO COMPARETTI",
+      "VIA DEL RONDININO"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Lunedi del mese dalle 13.00 alle 18.00",
+    "count": 4,
+    "examples": [
+      "VIA TEODORO CARUEL",
+      "VIA BENEDETTO DA FOIANO",
+      "VIA MICHELE DI LANDO"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Martedi del mese dalle 13.30 alle 18.30",
+    "count": 4,
+    "examples": [
+      "VIA CADORE",
+      "VIA MONFERRATO",
+      "VIA CARNIA"
+    ]
+  },
+  {
+    "raw": "Il 3&ordm Martedi del mese dalle 06.00 alle 12.00",
+    "count": 4,
+    "examples": [
+      "VIA DELLA RESURREZIONE",
+      "VIA DI RIPALTA",
+      "VIA CARLO MAGGIORELLI"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm e il 3&ordm Mercoledi del mese dalle 16.00 alle 18.00",
+    "count": 4,
+    "examples": [
+      "VIA MARIO SBRILLI",
+      "VIA LUIGI MORANDI",
+      "VIA VITTORIO BARBIERI"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Venerdi del mese dalle 13.00 alle 19.00",
+    "count": 4,
+    "examples": [
+      "VIA DELLE MULINA DI SANT&#039;ANDREA",
+      "VIA LUIGI FEDERICO MENABREA",
+      "VIA GIUSEPPE MANFREDI"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Mercoledi del mese dalle 15.00 alle 18.00",
+    "count": 4,
+    "examples": [
+      "VIA DELLE MEDAGLIE D&#039;ORO",
+      "VIA ANNA MARIA ENRIQUES AGNOLETTI",
+      "LARGO ENRICO CARUSO"
+    ]
+  },
+  {
+    "raw": "Il 4&ordm Sabato del mese dalle 08.00 alle 11.30",
+    "count": 3,
+    "examples": [
+      "VIA MARIO FABIANI",
+      "VIA SALVADOR ALLENDE",
+      "VIA FELICE MATTEUCCI"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm e il 4&ordm Mercoledi del mese dalle 08.00 alle 11.00",
+    "count": 3,
+    "examples": [
+      "VIA FRANCESCO MORLACCHI",
+      "VIA ERMANNO WOLF FERRARI",
+      "VIA NICCOLO JOMMELLI"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Venerdi del mese dalle 07.00 alle 08.00",
+    "count": 3,
+    "examples": [
+      "VIA FRANCESCO CORTECCIA",
+      "VIA DEI TACCHINARDI",
+      "VIA ALESSANDRO STRADELLA"
+    ]
+  },
+  {
+    "raw": "Il 3&ordm Martedi del mese dalle 13.30 alle 18.30",
+    "count": 3,
+    "examples": [
+      "VIALE DEI TANINI",
+      "VIA DEL PIAN D&#039;EMA",
+      "VIA DEI CAMPI LUNGHI"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Sabato del mese dalle 13.00 alle 16.00",
+    "count": 3,
+    "examples": [
+      "VIA GIOVAN BATTISTA PERGOLESI",
+      "VIA GIUSEPPE TARTINI",
+      "VIA ARRIGO BOITO"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Sabato del mese dalle 13.00 alle 18.00",
+    "count": 3,
+    "examples": [
+      "VIA LIVORNO",
+      "VIA BIBBIENA",
+      "VIA GROSSETO"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Sabato del mese dalle 07.00 alle 12.00",
+    "count": 3,
+    "examples": [
+      "VIA GIOVANNI DA MILANO",
+      "VIA FRANCESCO PESELLINO",
+      "VIA GUARDAVIA"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Mercoledi del mese dalle 08.00 alle 11.30",
+    "count": 3,
+    "examples": [
+      "VIA MARCHE",
+      "VIA LOMBARDIA",
+      "VIA LIGURIA"
+    ]
+  },
+  {
+    "raw": "Il 3&ordm Venerdi del mese dalle 06.00 alle 09.00",
+    "count": 3,
+    "examples": [
+      "VIALE FRANCESCO TALENTI",
+      "PIAZZA POMPEO BATONI",
+      "PIAZZA CARLO AZEGLIO CIAMPI"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Mercoledi del mese dalle 13.00 alle 16.00",
+    "count": 3,
+    "examples": [
+      "VIA GIOVANNI MICHELUCCI",
+      "VIA ELIO GABBUGGIANI",
+      "VIA LUCIANO BAUSI"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Venerdi del mese dalle 06.00 alle 12.00",
+    "count": 3,
+    "examples": [
+      "VICOLO DELLA CAVA",
+      "COSTA SAN GIORGIO",
+      "VIA DEL FORTE DI SAN GIORGIO"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Martedi del mese dalle 09.30 alle 11.30",
+    "count": 2,
+    "examples": [
+      "VIA GIUSEPPE PESCETTI",
+      "VIA GIUSEPPE RIGUTINI"
+    ]
+  },
+  {
+    "raw": "Il 4&ordm Sabato del mese dalle 13.30 alle 18.30",
+    "count": 2,
+    "examples": [
+      "VIA VASCO DE GAMA",
+      "VIA LEONE PANCALDO"
+    ]
+  },
+  {
+    "raw": "Il 3&ordm Sabato del mese dalle 16.00 alle 18.00",
+    "count": 2,
+    "examples": [
+      "VIA GIOVANNI PIANTANIDA",
+      "VIA FRATELLI CECCHI"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Lunedi del mese dalle 13.00 alle 19.00",
+    "count": 2,
+    "examples": [
+      "VIA PAOLO MANTEGAZZA",
+      "VIA PIETRO BETTI"
+    ]
+  },
+  {
+    "raw": "Il 4&ordm Mercoledi del mese dalle 13.00 alle 18.00",
+    "count": 2,
+    "examples": [
+      "VIA DONATO BRAMANTE",
+      "VIA DIVISIONE GARIBALDI"
+    ]
+  },
+  {
+    "raw": "Il 3&ordm Giovedi del mese dalle 13.00 alle 18.00",
+    "count": 2,
+    "examples": [
+      "VIALE LORENZO MAGALOTTI",
+      "VIA BENEDETTO CASTELLI"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Sabato del mese dalle 07.00 alle 12.00",
+    "count": 2,
+    "examples": [
+      "VIALE RAFFAELLO SANZIO",
+      "VIALE ALEARDO ALEARDI"
+    ]
+  },
+  {
+    "raw": "Il 4&ordm Giovedi del mese dalle 13.00 alle 18.00",
+    "count": 2,
+    "examples": [
+      "LUNGARNO DEI PIOPPI",
+      "PIAZZA DELL&#039;ISOLOTTO"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Venerdi del mese dalle 07.00 alle 12.00",
+    "count": 2,
+    "examples": [
+      "VIA BERNARDO PASQUINI",
+      "VIA ANTONIO STRADIVARI"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Mercoledi del mese dalle 13.00 alle 19.00",
+    "count": 2,
+    "examples": [
+      "PIAZZA FELICE BACCI",
+      "VIA GUGLIELMO FERRERO"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Mercoledi del mese dalle 07.30 alle 09.30",
+    "count": 2,
+    "examples": [
+      "VIA DEL BARCO",
+      "VIA MUZIO CLEMENTI"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Giovedi del mese dalle 13.30 alle 18.30",
+    "count": 2,
+    "examples": [
+      "PIAZZA BERNARDO TANUCCI",
+      "VIA LUIGI GORDIGIANI"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Sabato del mese dalle 16.00 alle 18.00",
+    "count": 2,
+    "examples": [
+      "VIA POLICARPO PETROCCHI",
+      "VIA DELLE SCIABBIE"
+    ]
+  },
+  {
+    "raw": "La 1&ordm e la 3&ordm Domenica del mese dalle 06.00 alle 09.30",
+    "count": 1,
+    "examples": [
+      "LUNGARNO CRISTOFORO COLOMBO"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Martedi del mese dalle 07.00 alle 09.30",
+    "count": 1,
+    "examples": [
+      "VIALE UGO OJETTI"
+    ]
+  },
+  {
+    "raw": "Il 3&ordm Giovedi del mese dalle 13.30 alle 18.30",
+    "count": 1,
+    "examples": [
+      "VIA ALMERICO DA SCHIO"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm e il 4&ordm Sabato del mese dalle 16.00 alle 18.00",
+    "count": 1,
+    "examples": [
+      "VIA DE&#039; PERFETTI RICASOLI"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm e il 3&ordm Sabato del mese dalle 13.00 alle 18.00",
+    "count": 1,
+    "examples": [
+      "VIALE LUIGI GORI"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Sabato del mese dalle 07.00 alle 09.00",
+    "count": 1,
+    "examples": [
+      "VIALE ENRICO CIALDINI"
+    ]
+  },
+  {
+    "raw": "La 2&ordm e la 4&ordm Domenica del mese dalle 06.00 alle 09.30",
+    "count": 1,
+    "examples": [
+      "LUNGARNO DEL TEMPIO"
+    ]
+  },
+  {
+    "raw": "Il 3&ordm Sabato del mese dalle 07.00 alle 09.30",
+    "count": 1,
+    "examples": [
+      "PIAZZA TOMMASO ALVA EDISON"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Martedi del mese dalle 09.30 alle 12.00",
+    "count": 1,
+    "examples": [
+      "VIALE CALATAFIMI"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm e il 4&ordm Sabato del mese dalle 06.00 alle 12.00",
+    "count": 1,
+    "examples": [
+      "VIA PRATOVECCHIO"
+    ]
+  },
+  {
+    "raw": "Il 3&ordm Mercoledi del mese dalle 06.00 alle 09.00",
+    "count": 1,
+    "examples": [
+      "VIALE EVANGELISTA TORRICELLI"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Lunedi del mese dalle 13.30 alle 18.30",
+    "count": 1,
+    "examples": [
+      "VIA DEL PELLEGRINO"
+    ]
+  },
+  {
+    "raw": "Ogni Mercoledi del mese dalle 07.00 alle 10.00",
+    "count": 1,
+    "examples": [
+      "VIA DA&#039; MORI"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Sabato del mese dalle 07.00 alle 10.00",
+    "count": 1,
+    "examples": [
+      "VIA DEI SERVI"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Sabato del mese dalle 07.00 alle 10.00",
+    "count": 1,
+    "examples": [
+      "VIA RICASOLI"
+    ]
+  },
+  {
+    "raw": "Il 4&ordm Giovedi del mese dalle 07.00 alle 12.00",
+    "count": 1,
+    "examples": [
+      "VIA DI SANTA MARIA A CINTOIA"
+    ]
+  },
+  {
+    "raw": "Il 2&ordm Martedi del mese dalle 13.30 alle 16.00",
+    "count": 1,
+    "examples": [
+      "VIALE UGO BASSI"
+    ]
+  },
+  {
+    "raw": "Il 4&ordm Mercoledi del mese dalle 08.00 alle 11.00",
+    "count": 1,
+    "examples": [
+      "VIA GIOVANNI ANCILLOTTO"
+    ]
+  },
+  {
+    "raw": "Il 1&ordm Sabato del mese dalle 08.30 alle 12.00",
+    "count": 1,
+    "examples": [
+      "VIALE TERENZIO MAMIANI"
+    ]
+  },
+  {
+    "raw": "Ogni Sabato del mese dalle 07.00 alle 09.00",
+    "count": 1,
+    "examples": [
+      "PIAZZA FILIPPO BRUNELLESCHI"
+    ]
+  },
+  {
+    "raw": "La 2&ordm e la 4&ordm Domenica del mese dalle 09.00 alle 12.00",
+    "count": 1,
+    "examples": [
+      "PIAZZA PIAVE"
+    ]
+  }
+]
