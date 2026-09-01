@@ -14,12 +14,31 @@ function escapeText(value: string): string {
     .replace(/\n/g, '\\n');
 }
 
-/** Fold lines longer than 75 octets, per RFC 5545 section 3.1. */
+const encoder = new TextEncoder();
+
+/**
+ * Fold lines longer than 75 octets, per RFC 5545 section 3.1. Counts UTF-8
+ * bytes, not JS string length — Florence street/rule text contains
+ * multi-byte characters (e.g. the ordinal marker 'º' is two bytes), and a
+ * codepoint must never be split across a fold boundary.
+ */
 function fold(line: string): string {
-  if (line.length <= 75) return line;
-  const parts = [line.slice(0, 75)];
-  for (let i = 75; i < line.length; i += 74) parts.push(` ${line.slice(i, i + 74)}`);
-  return parts.join('\r\n');
+  const out: string[] = [];
+  let current = '';
+  let bytes = 0;
+
+  for (const ch of line) {
+    const size = encoder.encode(ch).length;
+    if (bytes + size > 75) {
+      out.push(current);
+      current = ' '; // continuation lines begin with a single space
+      bytes = 1;
+    }
+    current += ch;
+    bytes += size;
+  }
+  out.push(current);
+  return out.join('\r\n');
 }
 
 function stamp(iso: string, minutes: number): string {

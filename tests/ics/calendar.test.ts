@@ -69,4 +69,29 @@ describe('buildCalendar', () => {
     });
     expect(unknown).not.toContain('BEGIN:VEVENT');
   });
+
+  it('folds lines by UTF-8 octets, not JS string length', () => {
+    // 73 JS chars but 76 UTF-8 bytes: each 'º' is two bytes. Under the old
+    // `.length <= 75` check this line shipped unfolded, violating RFC 5545's
+    // 75-octet limit. A real committed-corpus rule (count: 11) triggers this.
+    const raw = 'Il 1º e il 3º e il 5º Venerdi del mese dalle 06.30 alle 10.00';
+    const rule: CleaningRule = {
+      weekday: 5,
+      selector: { kind: 'nthOfMonth', ns: [1, 3, 5] },
+      window: { startMinutes: 390, endMinutes: 600 },
+      raw,
+    };
+    const ics = buildCalendar({ street: 'X', rule, fromDate: '2026-09-01', count: 1 });
+    const encoder = new TextEncoder();
+
+    for (const line of ics.split('\r\n')) {
+      expect(encoder.encode(line).length).toBeLessThanOrEqual(75);
+    }
+
+    // Unfolding (stripping CRLF + a single leading continuation space)
+    // must reconstruct the original DESCRIPTION text exactly, so the fix
+    // cannot pass by truncating instead of folding.
+    const unfolded = ics.replace(/\r\n /g, '');
+    expect(unfolded).toContain(`DESCRIPTION:${raw}`);
+  });
 });
