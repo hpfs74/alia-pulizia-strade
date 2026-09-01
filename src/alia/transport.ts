@@ -5,11 +5,6 @@ export const USER_AGENT =
 export type PostFn = (path: string, form: Record<string, string>) => Promise<unknown>;
 
 /**
- * Live transport. Serialises every request through a single promise chain so
- * that calls are spaced by at least `minIntervalMs`, keeping us a negligible
- * load on Alia's servers even during a full-city harvest.
- */
-/**
  * Every request shares one queue, so a request that never settles stalls every
  * later one indefinitely — a CLI run would simply hang with no output. Fifteen
  * seconds is far longer than any observed Alia response and short enough that
@@ -17,6 +12,11 @@ export type PostFn = (path: string, form: Record<string, string>) => Promise<unk
  */
 const DEFAULT_TIMEOUT_MS = 15_000;
 
+/**
+ * Live transport. Serialises every request through a single promise chain so
+ * that calls are spaced by at least `minIntervalMs`, keeping us a negligible
+ * load on Alia's servers even during a full-city harvest.
+ */
 export function createTransport(
   options: { minIntervalMs?: number; timeoutMs?: number } = {},
 ): PostFn {

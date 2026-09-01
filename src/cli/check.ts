@@ -40,12 +40,17 @@ if (!street) {
   process.exit(1);
 }
 
+// ASM streets need a civic number; Alia ignores it for EXQ ones (every street
+// in Florence). Whatever we actually sent is what the answer describes, so the
+// same value goes into the calendar's UIDs below.
+const effectiveCivico = street.tipoStrada === 'ASM' && civico === '' ? '1' : civico;
+
 const result = await client.lookup({
   idStrada: street.idStrada,
   tipoStrada: street.tipoStrada,
   comune,
   tratto,
-  civico: street.tipoStrada === 'ASM' && civico === '' ? '1' : civico,
+  civico: effectiveCivico,
 });
 
 const segments = await client.getTratti(street.idStrada);
@@ -130,7 +135,7 @@ if (icsPath) {
     fromDate: today,
     count: icsCount,
     tratto: tratto || undefined,
-    civico: civico || undefined,
+    civico: effectiveCivico || undefined,
   });
   if (ics === null) {
     // Unreachable today (an unknown rule already exited above), but the type
