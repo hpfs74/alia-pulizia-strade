@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { crossCheck } from '../../src/schedule/verify.ts';
+import { decodeAliaHtml } from '../../src/alia/html.ts';
+import { parseCityList } from '../../src/alia/city-list.ts';
 import type { CleaningRule } from '../../src/alia/types.ts';
 
 const GADDI: CleaningRule = {
@@ -49,12 +51,21 @@ describe('crossCheck', () => {
     ).toBe(true);
   });
 
-  it('matches a street name containing an apostrophe from AliaClient#getStreets decoding', () => {
-    // AliaClient.getStreets now decodes HTML entities in `nome` (e.g. "&#039;"
-    // becomes "'"), and parseCityList runs payloads through decodeAliaHtml,
-    // which does the same. Both sides of crossCheck's comparison must reach
-    // the same apostrophe form, or these 87 central-Florence streets would
-    // false-mismatch and train readers to ignore the safety net.
+  it('matches an apostrophe street name reached through the real decode paths on both sides', () => {
+    // The street side goes through decodeAliaHtml, mirroring what
+    // AliaClient.getStreets now does to `nome` (87 of Florence's 1,560 street
+    // names carry "&#039;", e.g. "PIAZZA DELL&#039;INDIPENDENZA"). The
+    // city-list side goes through parseCityList on a raw Alia-shaped payload.
+    // The two inputs are deliberately given different case, so that
+    // crossCheck's normalise() is load-bearing on BOTH sides: dropping it
+    // from either side breaks this test, unlike a test built from two
+    // byte-identical literals.
+    const street = decodeAliaHtml('piazza dell&#039;INDIPENDENZA');
+    const cityList = parseCityList(
+      "<p>Piazza  dell&#039;Indipendenza, Orario: 00.00 - 06.00</p>",
+    );
+    expect(cityList).toEqual(["Piazza dell'Indipendenza"]);
+
     const INDIPENDENZA: CleaningRule = {
       weekday: 3,
       selector: { kind: 'everyWeek' },
@@ -63,9 +74,9 @@ describe('crossCheck', () => {
     };
     const result = crossCheck({
       rule: INDIPENDENZA,
-      street: "PIAZZA DELL'INDIPENDENZA",
+      street,
       date: '2026-10-14',
-      cityList: ["PIAZZA DELL'INDIPENDENZA"],
+      cityList,
     });
     expect(result).toEqual({ agrees: true, predicted: true, actual: true });
   });
