@@ -1,4 +1,5 @@
-import type { Street } from './types.ts';
+import { parseLookup } from './lookup.ts';
+import type { LookupResult, Street } from './types.ts';
 import type { PostFn } from './transport.ts';
 
 interface RawStreet {
@@ -24,5 +25,22 @@ export class AliaClient {
       | Array<{ tratto: string }>
       | null;
     return (raw ?? []).map((entry) => entry.tratto);
+  }
+
+  async lookup(args: {
+    idStrada: string;
+    tipoStrada: string;
+    comune: string;
+    tratto?: string;
+    civico?: string;
+  }): Promise<LookupResult> {
+    const payload = (await this.post('pulizie/calcola_data', {
+      id_strada: args.idStrada,
+      tipo_strada: args.tipoStrada,
+      comune: args.comune,
+      trattostrada: args.tratto ?? '',
+      civico: args.civico ?? '',
+    })) as string;
+    return parseLookup(payload);
   }
 }
